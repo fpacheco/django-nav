@@ -1,8 +1,7 @@
-from flask import url_for, request, current_app
+#from flask import url_for, request, current_app
+from django.urls import reverse_lazy
 from markupsafe import Markup
-
 from . import get_renderer
-
 
 class NavigationItem(object):
     """Base for all items in a Navigation.
@@ -73,7 +72,7 @@ class View(Link):
 
         :return: A string with a link.
         """
-        return url_for(self.endpoint, **self.url_for_kwargs)
+        return reverse_lazy(self.endpoint, kwargs=**self.url_for_kwargs)
 
     @property
     def active(self):

@@ -1,5 +1,4 @@
-from flask import current_app
-
+from django.conf import settings
 from dominate import tags
 from visitor import Visitor
 
@@ -20,7 +19,7 @@ class Renderer(Visitor):
 
         Outside of debug-mode, returns an empty string.
         """
-        if current_app.debug:
+        if settings.DEBUG:
             return tags.comment('no implementation in {} to render {}'.format(
                 self.__class__.__name__,
                 node.__class__.__name__, ))
